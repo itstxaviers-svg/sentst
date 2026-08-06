@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071c32" />
+    <meta
+      name="description"
+      content="Sentence Stacker — a fast-paced English grammar tower-building game."
+    />
+    <title>Sentence Stacker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Nunito:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to game</a>
+    <main id="app" tabindex="-1" aria-live="off"></main>
+    <div id="modal-root"></div>
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <noscript>Sentence Stacker requires JavaScript to run.</noscript>
+    <script src="game.js" defer></script>
+  </body>
+</html>

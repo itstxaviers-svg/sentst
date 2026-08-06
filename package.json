@@ -1,0 +1,10 @@
+{
+  "name": "sentence-stacker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A fast-paced English grammar tower-building game.",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "check": "node --check game.js"
+  }
+}
