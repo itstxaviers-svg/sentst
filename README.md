@@ -1,6 +1,6 @@
 # Sentence Stacker
 
-An English grammar arcade game with fourteen levels, an independent tractor timer, five grammar libraries, and a collection of seven Ancient and seven New Wonders.
+An English grammar arcade game with fourteen levels, an independent tractor timer, six grammar libraries, and a collection of seven Ancient and seven New Wonders.
 
 ## Run
 

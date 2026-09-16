@@ -26,6 +26,7 @@ All visible game content must be in English, including menus, instructions, sent
   - Future Simple
   - Present Continuous
   - Present Perfect Simple
+  - This, These & Prepositions
 - Each grammar topic has its own expandable task library.
 - Recent tasks must not repeat for the same player.
 - Levels 1–2 share one tower visual theme, Levels 3–4 share a second theme, and Levels 5–6 share a third theme.
@@ -91,7 +92,7 @@ Do not shorten the tractor interval by level unless later playtesting shows that
 
 ### Initial selection
 
-Before starting Level 1, show five selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
+Before starting Level 1, show six selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
 
 Each card should contain:
 
@@ -191,6 +192,19 @@ Reference formulas:
 
 The guide must clearly distinguish Present Perfect Simple from Past Simple, especially when a finished past time is stated.
 
+### This, These & Prepositions
+
+Cover singular and plural object identification with `this/these`, `it/they`, and `is/are`, as well as object positions with `in`, `on`, `under`, and `next to`. Questions must place `is` or `are` before the subject.
+
+Reference formulas:
+
+- Singular identity: `What's this? It's + singular noun.`
+- Plural identity: `What are these? They are + plural noun.`
+- Singular position: `Where is + singular noun? It is + preposition + place.`
+- Plural position: `Where are + plural noun? They are + preposition + place.`
+
+The guide must explicitly explain that `What are these?` identifies visible plural objects. `What are there?` does not pair with `They are ...`; questions about what exists in a place normally use `What is there?` followed by `There is/are ...`.
+
 ## 8. Exercise Library
 
 ### Content requirements
@@ -226,7 +240,8 @@ type GrammarTopic =
   | "past-simple"
   | "future-simple"
   | "present-continuous"
-  | "present-perfect-simple";
+  | "present-perfect-simple"
+  | "objects-and-prepositions";
 
 interface SentenceTask {
   id: string;
@@ -237,6 +252,7 @@ interface SentenceTask {
     | "negative"
     | "question"
     | "word-order"
+    | "number"
     | "verb-form"
     | "time-marker";
   correct: string;
@@ -739,7 +755,7 @@ interface SaveDataV1 {
 ### Phase 2 — Content and progression
 
 - Add all fourteen level configurations.
-- Add multi-topic selection and all five grammar libraries.
+- Add multi-topic selection and all six grammar libraries.
 - Add save data, results, retry, and between-level selection.
 
 ### Phase 3 — Collection and reference
@@ -765,7 +781,7 @@ The first production release is complete when:
 - the tractor removes the bottom block every 10 active gameplay seconds without waiting for the player;
 - keyboard, mouse, and touch controls are usable;
 - one or several grammar topics can be selected initially and between levels;
-- all five Grammar Guide sections are complete;
+- all six Grammar Guide sections are complete;
 - each topic has at least 100 validated and teacher-reviewed tasks;
 - tasks do not repeat within a level and recent cross-session repetition is minimised;
 - each newly completed level unlocks one unique Wonder, Level 7 offers the second chapter, and Level 14 completes the collection;

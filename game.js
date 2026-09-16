@@ -47,6 +47,14 @@
       use: "Use it for life experience, recent results, unfinished time, and actions connected to now.",
       examples: ["I have visited Rome twice.", "He has not finished yet.", "Have you ever seen the Great Wall?"],
       mistake: "Use has with he, she, or it. Do not use Present Perfect with a finished past time."
+    },
+    "objects-and-prepositions": {
+      name: "This, These & Prepositions",
+      short: "Objects, number, and position",
+      formula: "What's this? It's … / What are these? They are … / in, on, under, next to",
+      use: "Use this and it for one object, and these and they for more than one. Use in, on, under, and next to to say where objects are.",
+      examples: ["What's this? It's a pencil.", "What are these? They are pencils.", "Where are the pencils? They are in the pencil case."],
+      mistake: "Match is with this, it, and one object; match are with these, they, and plural objects. Put is or are before the subject in a question. To identify visible plural objects, ask “What are these?”, not “What are there?”"
     }
   };
 
@@ -350,6 +358,31 @@
     ];
   }
 
+  function objectPlaceScenes() {
+    return [
+      ["a pencil", "pencils", "pencil", "in", "the pencil case"],
+      ["a book", "books", "book", "on", "the desk"],
+      ["a ball", "balls", "ball", "under", "the chair"],
+      ["a lamp", "lamps", "lamp", "next to", "the sofa"],
+      ["a cat", "cats", "cat", "under", "the table"],
+      ["a cup", "cups", "cup", "on", "the shelf"],
+      ["a toy", "toys", "toy", "in", "the box"],
+      ["a bag", "bags", "bag", "next to", "the door"],
+      ["an apple", "apples", "apple", "in", "the basket"],
+      ["a shoe", "shoes", "shoe", "under", "the bed"],
+      ["a notebook", "notebooks", "notebook", "on", "the table"],
+      ["a ruler", "rulers", "ruler", "in", "the school bag"],
+      ["a dog", "dogs", "dog", "next to", "the tree"],
+      ["a picture", "pictures", "picture", "on", "the wall"],
+      ["a bike", "bikes", "bike", "next to", "the house"],
+      ["a key", "keys", "key", "in", "the drawer"],
+      ["a phone", "phones", "phone", "on", "the sofa"],
+      ["a doll", "dolls", "doll", "in", "the cupboard"],
+      ["a hat", "hats", "hat", "on", "the chair"],
+      ["a mouse", "mice", "mouse", "under", "the cupboard"]
+    ];
+  }
+
   function task(id, topic, correct, distractor, explanation, subtype) {
     return { id: id, topic: topic, correct: correct, distractor: distractor, explanation: explanation, subtype: subtype || "verb-form" };
   }
@@ -399,6 +432,26 @@
         task("pp-n-" + i, "present-perfect-simple", "They have not " + a[3] + " yet.", "They have not " + a[0] + " yet.", "Use have not + past participle with yet.", "negative"),
         task("pp-q-" + i, "present-perfect-simple", "Have you ever " + a[3] + "?", "Have you ever " + a[0] + "?", "Use have + past participle to ask about life experience.", "question"),
         task("pp-time-" + i, "present-perfect-simple", "We have " + a[3] + " three times so far this month.", "We have " + a[0] + " three times so far this month.", "Use have + past participle with so far in an unfinished time period.", "time-marker")
+      );
+    });
+    objectPlaceScenes().forEach(function (scene, i) {
+      var singularAnswer = scene[0];
+      var plural = scene[1];
+      var singular = scene[2];
+      var preposition = scene[3];
+      var place = scene[4];
+      var singularIdentityError = i % 2 === 0
+        ? "What this is? It's " + singularAnswer + "."
+        : "What's this? They are " + singularAnswer + ".";
+      var pluralIdentityError = i % 2 === 0
+        ? "What is these? They are " + plural + "."
+        : "What are these? It is " + plural + ".";
+      tasks["objects-and-prepositions"].push(
+        task("op-this-" + i, "objects-and-prepositions", "What's this? It's " + singularAnswer + ".", singularIdentityError, i % 2 === 0 ? "In a question, put is before this: What's this?" : "Use it is (it's) for one object, not they are.", i % 2 === 0 ? "word-order" : "number"),
+        task("op-these-" + i, "objects-and-prepositions", "What are these? They are " + plural + ".", pluralIdentityError, i % 2 === 0 ? "Use are with these and a plural answer." : "Use they are for more than one object, not it is.", "number"),
+        task("op-where-one-" + i, "objects-and-prepositions", "Where is the " + singular + "? It is " + preposition + " " + place + ".", "Where the " + singular + " is? It is " + preposition + " " + place + ".", "In a question, put is before the singular subject.", "word-order"),
+        task("op-where-many-" + i, "objects-and-prepositions", "Where are the " + plural + "? They are " + preposition + " " + place + ".", "Where is the " + plural + "? They are " + preposition + " " + place + ".", "Use are with a plural subject such as " + plural + ".", "question"),
+        task("op-place-" + i, "objects-and-prepositions", "The " + plural + " are " + preposition + " " + place + ".", "The " + plural + " is " + preposition + " " + place + ".", "Use are with more than one object.", "number")
       );
     });
     return tasks;
