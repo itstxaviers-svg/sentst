@@ -194,14 +194,15 @@ The guide must clearly distinguish Present Perfect Simple from Past Simple, espe
 
 ### This, These & Prepositions
 
-Cover singular and plural object identification with `this/these`, `it/they`, and `is/are`, as well as object positions with `in`, `on`, `under`, and `next to`. Questions must place `is` or `are` before the subject.
+Cover only singular and plural object identification with `this/these` and object positions with `in`, `on`, `under`, and `next to`. This topic must not include Present Continuous or tasks about `-ing` spelling.
 
 Reference formulas:
 
 - Singular identity: `What's this? It's + singular noun.`
 - Plural identity: `What are these? They are + plural noun.`
-- Singular position: `Where is + singular noun? It is + preposition + place.`
-- Plural position: `Where are + plural noun? They are + preposition + place.`
+- Singular statement: `This is + singular noun.`
+- Plural statement: `These are + plural noun.`
+- Position: `subject + is/are + in/on/under/next to + place.`
 
 The guide must explicitly explain that `What are these?` identifies visible plural objects. `What are there?` does not pair with `They are ...`; questions about what exists in a place normally use `What is there?` followed by `There is/are ...`.
 

@@ -52,9 +52,9 @@
       name: "This, These & Prepositions",
       short: "Objects, number, and position",
       formula: "What's this? It's … / What are these? They are … / in, on, under, next to",
-      use: "Use this and it for one object, and these and they for more than one. Use in, on, under, and next to to say where objects are.",
-      examples: ["What's this? It's a pencil.", "What are these? They are pencils.", "Where are the pencils? They are in the pencil case."],
-      mistake: "Match is with this, it, and one object; match are with these, they, and plural objects. Put is or are before the subject in a question. To identify visible plural objects, ask “What are these?”, not “What are there?”"
+      use: "Use this for one object and these for more than one. Use in, on, under, and next to to describe an object's position.",
+      examples: ["What's this? It's a pencil.", "What are these? They are pencils.", "The pencils are in the pencil case."],
+      mistake: "Use this with one object and these with plural objects. To identify visible plural objects, ask “What are these?”, not “What are there?” Keep the complete preposition next to together."
     }
   };
 
@@ -449,9 +449,9 @@
       tasks["objects-and-prepositions"].push(
         task("op-this-" + i, "objects-and-prepositions", "What's this? It's " + singularAnswer + ".", singularIdentityError, i % 2 === 0 ? "In a question, put is before this: What's this?" : "Use it is (it's) for one object, not they are.", i % 2 === 0 ? "word-order" : "number"),
         task("op-these-" + i, "objects-and-prepositions", "What are these? They are " + plural + ".", pluralIdentityError, i % 2 === 0 ? "Use are with these and a plural answer." : "Use they are for more than one object, not it is.", "number"),
-        task("op-where-one-" + i, "objects-and-prepositions", "Where is the " + singular + "? It is " + preposition + " " + place + ".", "Where the " + singular + " is? It is " + preposition + " " + place + ".", "In a question, put is before the singular subject.", "word-order"),
-        task("op-where-many-" + i, "objects-and-prepositions", "Where are the " + plural + "? They are " + preposition + " " + place + ".", "Where is the " + plural + "? They are " + preposition + " " + place + ".", "Use are with a plural subject such as " + plural + ".", "question"),
-        task("op-place-" + i, "objects-and-prepositions", "The " + plural + " are " + preposition + " " + place + ".", "The " + plural + " is " + preposition + " " + place + ".", "Use are with more than one object.", "number")
+        task("op-this-statement-" + i, "objects-and-prepositions", "This is " + singularAnswer + ".", "These is " + singularAnswer + ".", "Use this for one object.", "number"),
+        task("op-these-statement-" + i, "objects-and-prepositions", "These are " + plural + ".", "This are " + plural + ".", "Use these for more than one object.", "number"),
+        task("op-preposition-" + i, "objects-and-prepositions", "The " + singular + " is " + preposition + " " + place + ".", "The " + singular + " " + preposition + " is " + place + ".", "Put the preposition after is: is " + preposition + " " + place + ".", "word-order")
       );
     });
     return tasks;
