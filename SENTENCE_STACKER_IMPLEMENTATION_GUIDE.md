@@ -27,6 +27,7 @@ All visible game content must be in English, including menus, instructions, sent
   - Present Continuous
   - Present Perfect Simple
   - This, These & Prepositions
+  - Comparative Adjectives: one-syllable and short two-syllable adjectives ending in `-y`
 - Each grammar topic has its own expandable task library.
 - Recent tasks must not repeat for the same player.
 - Levels 1–2 share one tower visual theme, Levels 3–4 share a second theme, and Levels 5–6 share a third theme.
@@ -44,7 +45,7 @@ The game is primarily recognition-based, but its data model should support futur
 
 ## 4. Core Game Loop
 
-1. Show the current grammar rule in a compact reference panel.
+1. Keep the active grammar topic hidden while the player answers, so the correct rule must be inferred from the sentences.
 2. Select a task from one of the active grammar libraries.
 3. Display two sentence blocks, one entering from the left and one from the right.
 4. Exactly one block is correct.
@@ -63,7 +64,7 @@ The game is primarily recognition-based, but its data model should support futur
 8. Every 10 seconds, the tractor crosses the foreground and attempts to take the bottom block.
 9. If the tower contains blocks, the lowest block is removed and all remaining blocks settle downward.
 10. If the tower is empty, the tractor still passes and the next 10-second cycle begins normally.
-11. The player wins when the tower reaches the target height.
+11. The player wins when the tower reaches the target height. Every successful level result must prominently display the exact text **WIN!**, including both first-time Wonder rewards and replayed levels.
 12. The player loses when the level timer reaches zero before the target height is reached.
 
 The game should feel quick. A normal transition to the next question should take no more than 600–900 ms. The player must never be forced to wait for the tractor animation before answering.
@@ -92,7 +93,7 @@ Do not shorten the tractor interval by level unless later playtesting shows that
 
 ### Initial selection
 
-Before starting Level 1, show six selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
+Before starting Level 1, show seven selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
 
 Each card should contain:
 
@@ -208,6 +209,19 @@ Reference formulas:
 
 The guide must explicitly explain that `What are these?` identifies visible plural objects. `What are there?` does not pair with `They are ...`; questions about what exists in a place normally use `What is there?` followed by `There is/are ...`.
 
+### Comparative Adjectives
+
+Cover comparisons made with one-syllable adjectives and short two-syllable adjectives ending in `-y`. Do not introduce long adjectives with `more` in this topic.
+
+Reference formulas:
+
+- Most one-syllable adjectives: `adjective + -er + than` (`tall → taller than`).
+- Consonant-vowel-consonant endings: double the final consonant before `-er` (`big → bigger than`).
+- Short two-syllable adjectives ending in `-y`: change `-y` to `-ier` (`happy → happier than`).
+- Question: `Which + noun + is + comparative adjective?`
+
+Distractors must test only the selected comparative rule: a missing or incorrect `-er/-ier` ending, unnecessary `more`, a double comparative such as `more taller`, or `then` in place of `than`.
+
 ## 8. Exercise Library
 
 ### Content requirements
@@ -244,7 +258,8 @@ type GrammarTopic =
   | "future-simple"
   | "present-continuous"
   | "present-perfect-simple"
-  | "objects-and-prepositions";
+  | "objects-and-prepositions"
+  | "comparative-adjectives";
 
 interface SentenceTask {
   id: string;
@@ -759,7 +774,7 @@ interface SaveDataV1 {
 ### Phase 2 — Content and progression
 
 - Add all fourteen level configurations.
-- Add multi-topic selection and all six grammar libraries.
+- Add multi-topic selection and all seven grammar libraries.
 - Add save data, results, retry, and between-level selection.
 
 ### Phase 3 — Collection and reference
@@ -785,7 +800,7 @@ The first production release is complete when:
 - the tractor removes the bottom block every 10 active gameplay seconds without waiting for the player;
 - keyboard, mouse, and touch controls are usable;
 - one or several grammar topics can be selected initially and between levels;
-- all six Grammar Guide sections are complete;
+- all seven Grammar Guide sections are complete;
 - each topic has at least 100 validated and teacher-reviewed tasks;
 - tasks do not repeat within a level and recent cross-session repetition is minimised;
 - each newly completed level unlocks one unique Wonder, Level 7 offers the second chapter, and Level 14 completes the collection;

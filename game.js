@@ -55,6 +55,14 @@
       use: "Use this for one object and these for more than one. Use in, on, under, and next to to describe an object's position.",
       examples: ["What's this? It's a pencil.", "What are these? They are pencils.", "The pencils are in the pencil case."],
       mistake: "Use this with one object and these with plural objects. To identify visible plural objects, ask “What are these?”, not “What are there?” Keep the complete preposition next to together."
+    },
+    "comparative-adjectives": {
+      name: "Comparative Adjectives",
+      short: "One syllable and short -y adjectives",
+      formula: "adjective + -er + than / -y → -ier + than",
+      use: "Use these comparative forms to compare two people, places, animals, or things. This topic covers one-syllable adjectives and short two-syllable adjectives ending in -y.",
+      examples: ["A train is faster than a bus.", "This box is bigger than that box.", "Maya is happier than Leo."],
+      mistake: "Do not use more with these adjectives. Add -er to most one-syllable adjectives, double the final consonant when needed (big → bigger), and change final -y to -ier (happy → happier). Always use than for the comparison."
     }
   };
 
@@ -383,6 +391,31 @@
     ];
   }
 
+  function comparativeAdjectives() {
+    return [
+      ["tall", "taller", "tallier", "the blue building", "the red building", "building"],
+      ["small", "smaller", "smallier", "the blue box", "the red box", "box"],
+      ["fast", "faster", "fastter", "the express train", "the local train", "train"],
+      ["long", "longer", "longger", "the north bridge", "the south bridge", "bridge"],
+      ["old", "older", "oldder", "the hill castle", "the river castle", "castle"],
+      ["cold", "colder", "coldder", "Monday", "Tuesday", "day"],
+      ["bright", "brighter", "brightter", "the desk lamp", "the floor lamp", "lamp"],
+      ["strong", "stronger", "strongger", "the climbing rope", "the garden rope", "rope"],
+      ["cheap", "cheaper", "cheapper", "the bus ticket", "the train ticket", "ticket"],
+      ["big", "bigger", "biger", "the music room", "the art room", "room"],
+      ["happy", "happier", "happyer", "Maya", "Leo", "person"],
+      ["easy", "easier", "easyer", "the first exercise", "the second exercise", "exercise"],
+      ["busy", "busier", "busyer", "King Street", "Queen Street", "street"],
+      ["funny", "funnier", "funnyer", "the first story", "the second story", "story"],
+      ["noisy", "noisier", "noisyer", "the music classroom", "the art classroom", "classroom"],
+      ["tidy", "tidier", "tidyer", "the blue room", "the green room", "room"],
+      ["pretty", "prettier", "prettyer", "the rose garden", "the herb garden", "garden"],
+      ["heavy", "heavier", "heavyer", "the school bag", "the sports bag", "bag"],
+      ["lucky", "luckier", "luckyer", "Maya", "Leo", "player"],
+      ["dirty", "dirtier", "dirtyer", "the kitchen floor", "the hall floor", "floor"]
+    ];
+  }
+
   function task(id, topic, correct, distractor, explanation, subtype) {
     return { id: id, topic: topic, correct: correct, distractor: distractor, explanation: explanation, subtype: subtype || "verb-form" };
   }
@@ -452,6 +485,25 @@
         task("op-this-statement-" + i, "objects-and-prepositions", "This is " + singularAnswer + ".", "These is " + singularAnswer + ".", "Use this for one object.", "number"),
         task("op-these-statement-" + i, "objects-and-prepositions", "These are " + plural + ".", "This are " + plural + ".", "Use these for more than one object.", "number"),
         task("op-preposition-" + i, "objects-and-prepositions", "The " + singular + " is " + preposition + " " + place + ".", "The " + singular + " " + preposition + " is " + place + ".", "Put the preposition after is: is " + preposition + " " + place + ".", "word-order")
+      );
+    });
+    comparativeAdjectives().forEach(function (item, i) {
+      var base = item[0];
+      var comparative = item[1];
+      var misspelling = item[2];
+      var subjectA = item[3];
+      var subjectB = item[4];
+      var noun = item[5];
+      var leadingSubject = subjectA.charAt(0).toUpperCase() + subjectA.slice(1);
+      var spellingRule = base.endsWith("y")
+        ? "Change final -y to -ier: " + base + " → " + comparative + "."
+        : (base === "big" ? "Double the final consonant before -er: big → bigger." : "Add -er to this one-syllable adjective: " + base + " → " + comparative + ".");
+      tasks["comparative-adjectives"].push(
+        task("ca-form-" + i, "comparative-adjectives", leadingSubject + " is " + comparative + " than " + subjectB + ".", leadingSubject + " is more " + base + " than " + subjectB + ".", "Use the -er comparative for this adjective: " + comparative + ", not more " + base + "."),
+        task("ca-ending-" + i, "comparative-adjectives", "This " + noun + " is " + comparative + " than that " + noun + ".", "This " + noun + " is " + base + " than that " + noun + ".", "A comparison needs the comparative form " + comparative + "."),
+        task("ca-question-" + i, "comparative-adjectives", "Which " + noun + " is " + comparative + "?", "Which " + noun + " is more " + comparative + "?", "Do not make a double comparative. Use " + comparative + " without more.", "question"),
+        task("ca-spelling-" + i, "comparative-adjectives", leadingSubject + " seems " + comparative + " than " + subjectB + ".", leadingSubject + " seems " + misspelling + " than " + subjectB + ".", spellingRule, "verb-form"),
+        task("ca-than-" + i, "comparative-adjectives", "In this comparison, " + subjectA + " is " + comparative + " than " + subjectB + ".", "In this comparison, " + subjectA + " is " + comparative + " then " + subjectB + ".", "Use than, not then, after a comparative adjective.", "word-order")
       );
     });
     return tasks;
@@ -700,6 +752,7 @@
     }
     snapshot.score += Math.floor(snapshot.remaining) * 5;
     var level = snapshot.config.level;
+    announce("WIN! Level " + level + " complete.");
     var firstCompletion = save.completedLevels.indexOf(level) < 0;
     if (firstCompletion) {
       save.completedLevels.push(level);
@@ -714,7 +767,7 @@
     if (wonder) {
       showWonderReveal(snapshot, wonder);
     } else {
-      showModal('<h2>Tower complete!</h2><p>You improved your Level ' + level + ' result. This Wonder was already collected.</p>' +
+      showModal('<p class="win-banner" role="status">WIN!</p><h2>Tower complete!</h2><p>You improved your Level ' + level + ' result. This Wonder was already collected.</p>' +
         resultStats(snapshot) + completionActions(level), false);
       bindCompletionActions(level);
     }
@@ -730,7 +783,7 @@
   }
 
   function showWonderReveal(game, wonder) {
-    showModal('<div class="wonder-reveal"><p class="eyebrow">' + wonder.group + ' discovered</p><div class="reveal-icon">' + wonderSpriteHtml(wonder, "reveal-sprite") + '</div>' +
+    showModal('<div class="wonder-reveal"><p class="win-banner" role="status">WIN!</p><p class="eyebrow">' + wonder.group + ' discovered</p><div class="reveal-icon">' + wonderSpriteHtml(wonder, "reveal-sprite") + '</div>' +
       '<h2>' + wonder.name + '</h2><p><strong>' + wonder.place + ' · ' + wonder.period + '</strong></p><p>' + wonder.fact + '</p>' +
       (save.unlockedWonderIds.length === 7 ? '<p class="chapter-message"><strong>First collection complete!</strong><br>Seven more Wonders are waiting. Continue building to discover them all.</p>' : '') + '</div>' +
       resultStats(game) + completionActions(game.config.level), false);
