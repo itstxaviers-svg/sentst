@@ -420,11 +420,11 @@
       );
       var ing = makeIng(a[0]);
       tasks["present-continuous"].push(
-        task("pc-a-" + i, "present-continuous", person + " is " + ing + " now.", person + " " + ing + " now.", "Present Continuous needs a form of be before the -ing verb."),
+        task("pc-a-" + i, "present-continuous", person + " is " + ing + " now.", person + " are " + ing + " now.", "Use is with one person in the Present Continuous."),
         task("pc-p-" + i, "present-continuous", "They are " + ing + " at the moment.", "They is " + ing + " at the moment.", "Use are with they."),
-        task("pc-n-" + i, "present-continuous", "I am not " + ing + " right now.", "I am not " + a[0] + " right now.", "Use am not + verb-ing for a current action.", "negative"),
-        task("pc-q-" + i, "present-continuous", "Is " + person.toLowerCase() + " " + ing + " now?", "Does " + person.toLowerCase() + " " + ing + " now?", "Begin a Present Continuous question with am, is, or are.", "question"),
-        task("pc-we-" + i, "present-continuous", "We are " + ing + " today.", "We are " + a[0] + " today.", "Use the -ing form after am, is, or are.")
+        task("pc-n-" + i, "present-continuous", "I am not " + ing + " right now.", "I is not " + ing + " right now.", "Use am with I in the Present Continuous.", "negative"),
+        task("pc-q-" + i, "present-continuous", "Is " + person.toLowerCase() + " " + ing + " now?", "Are " + person.toLowerCase() + " " + ing + " now?", "Use is with one person in a Present Continuous question.", "question"),
+        task("pc-we-" + i, "present-continuous", "We are " + ing + " today.", "We am " + ing + " today.", "Use are with we in the Present Continuous.")
       );
       tasks["present-perfect-simple"].push(
         task("pp-a-" + i, "present-perfect-simple", "I have " + a[3] + " already.", "I have " + a[0] + " already.", "Use the past participle after have."),
@@ -500,7 +500,6 @@
       hudPill("Tower", "0 / " + config.target, "tower-value") +
       hudPill("Time", formatTime(config.seconds), "time-value") +
       '<div class="hud-pill score-pill"><small>Score · streak</small><strong id="score-value">0 · ×0</strong></div>' +
-      '<div class="hud-pill topic-pill"><small>Grammar</small><strong id="topic-value">—</strong></div>' +
       '<div class="icon-actions">' + musicControl() + '<button class="icon-btn" id="pause-button" aria-label="Pause">Ⅱ</button><button class="icon-btn" data-action="guide" aria-label="Grammar Guide">G</button><button class="icon-btn" data-action="mute" aria-label="Mute">' + (save.settings.muted ? "🔇" : "🔊") + '</button></div>' +
       '</header><div class="game-area">' +
       '<div class="choice-row" id="choice-row"></div>' +
@@ -565,7 +564,6 @@
     game.correctSide = correctLeft ? "left" : "right";
     var leftText = correctLeft ? picked.correct : picked.distractor;
     var rightText = correctLeft ? picked.distractor : picked.correct;
-    document.getElementById("topic-value").textContent = TOPICS[picked.topic].name;
     document.getElementById("feedback-zone").innerHTML = "";
     var row = document.getElementById("choice-row");
     row.innerHTML = sentenceButton("left", leftText, "←") + sentenceButton("right", rightText, "→");

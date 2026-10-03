@@ -174,6 +174,8 @@ Reference formulas:
 
 Cover actions happening now, temporary situations, and changing situations. Include forms of `be`, verb `-ing` spelling, and common stative verbs that are normally not used in continuous forms.
 
+Every Present Continuous answer pair must remain inside the Present Continuous structure. Both the correct sentence and its distractor must contain an `-ing` verb and an attempted form of `am/is/are`; do not use Present Simple forms or `do/does` as distractors.
+
 Reference formulas:
 
 - Affirmative: `subject + am/is/are + verb-ing`.
@@ -475,9 +477,10 @@ The HUD must show:
 - remaining time;
 - current tower height and target, for example `7 / 12`;
 - score and streak;
-- active grammar topic for the current task;
 - tractor countdown or a clearly understandable incoming indicator;
 - pause, sound, and Grammar Guide buttons.
+
+Do not display the active grammar topic while the player is answering. When several topics are selected, tasks from all selected libraries must be mixed fairly and the player must infer the required grammar from the sentence itself.
 
 ### Results
 

@@ -386,7 +386,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   position: relative;
   z-index: 20;
   display: grid;
-  grid-template-columns: auto repeat(5, minmax(88px, 1fr)) auto;
+  grid-template-columns: auto repeat(4, minmax(88px, 1fr)) auto;
   gap: 10px;
   width: min(1320px, calc(100% - 24px));
   margin: 0 auto;
@@ -968,7 +968,6 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   .hud-pill { min-height: 50px; padding: 6px 9px; }
   .hud-pill strong { font-size: 1.1rem; }
   .hud-pill small { font-size: .56rem; }
-  .game-hud .topic-pill { display: none; }
   .game-area { inset-block-start: 70px; }
   .choice-row { top: 14%; }
   .sentence-block { width: 45vw; min-height: 112px; padding: 20px 14px; font-size: .93rem; }
