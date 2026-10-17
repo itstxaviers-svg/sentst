@@ -63,6 +63,15 @@
       use: "Use these comparative forms to compare two people, places, animals, or things. This topic covers one-syllable adjectives and short two-syllable adjectives ending in -y.",
       examples: ["A train is faster than a bus.", "This box is bigger than that box.", "Maya is happier than Leo."],
       mistake: "Do not use more with these adjectives. Add -er to most one-syllable adjectives, double the final consonant when needed (big → bigger), and change final -y to -ier (happy → happier). Always use than for the comparison."
+    },
+    "possessive-forms": {
+      name: "Possessives & Apostrophes",
+      short: "my/mine, her/hers, Grandpa's",
+      formula: "my book → mine · her book → hers · Grandpa's book",
+      use: "Use my/her/our before a noun, but mine/hers/ours without one. Apostrophes show who owns something.",
+      examples: ["Is that Grandpa's tractor? Yes, it's his.", "Are those Vicky's shoes? Yes, they're hers.", "The children's toys are here, but ours are at home."],
+      forms: "my/mine · your/yours · his/his · her/hers · our/ours · their/theirs. Singular: Grandpa's. Regular plural: pirates'. Irregular plural: children's. Shared item: Anna and Leo's.",
+      mistake: "Use her shoes but the shoes are hers. Use pirates', not pirates's, for a regular plural owner."
     }
   };
 
@@ -416,6 +425,41 @@
     ];
   }
 
+  function possessionScenes() {
+    // owner, possessive owner, incorrect owner form, object, adjective, pronoun, plural object
+    return [
+      ["Grandpa", "Grandpa's", "Grandpa", "tractor", "his", "his", false],
+      ["Dad", "Dad's", "Dad", "CDs", "his", "his", true],
+      ["Leo", "Leo's", "Leo", "bike", "his", "his", false],
+      ["my brother", "my brother's", "my brother", "pencil case", "his", "his", false],
+      ["Maya", "Maya's", "Maya", "backpack", "her", "hers", false],
+      ["Vicky", "Vicky's", "Vicky", "shoes", "her", "hers", true],
+      ["Jane", "Jane's", "Jane", "scarf", "her", "hers", false],
+      ["my sister", "my sister's", "my sister", "guitar", "her", "hers", false],
+      ["Mum", "Mum's", "Mum", "coat", "her", "hers", false],
+      ["the pirates", "the pirates'", "the pirates's", "treasure", "their", "theirs", false],
+      ["the teachers", "the teachers'", "the teachers's", "books", "their", "theirs", true],
+      ["the children", "the children's", "the childrens'", "toys", "their", "theirs", true],
+      ["the parents", "the parents'", "the parents's", "garden", "their", "theirs", false],
+      ["the players", "the players'", "the players's", "helmets", "their", "theirs", true],
+      ["the women", "the women's", "the womens'", "bags", "their", "theirs", true],
+      ["Anna and Leo", "Anna and Leo's", "Anna and Leo", "model", "their", "theirs", false],
+      ["my aunt and uncle", "my aunt and uncle's", "my aunt and uncle", "car", "their", "theirs", false],
+      ["the artists", "the artists'", "the artists's", "brushes", "their", "theirs", true]
+    ];
+  }
+
+  function speakerPossessionScenes() {
+    // question, short answer, full answer, incorrect short answer, incorrect full answer
+    return [
+      ["Is this your pencil?", "Yes, it's mine.", "Yes, it's my pencil.", "Yes, it's my.", "Yes, it's mine pencil."],
+      ["Is this my ruler?", "Yes, it's yours.", "Yes, it's your ruler.", "Yes, it's your.", "Yes, it's yours ruler."],
+      ["Is this our car?", "Yes, it's ours.", "Yes, it's our car.", "Yes, it's our.", "Yes, it's ours car."],
+      ["Are these your shoes?", "Yes, they're mine.", "Yes, they're my shoes.", "Yes, they're my.", "Yes, they're mine shoes."],
+      ["Are these our books?", "Yes, they're ours.", "Yes, they're our books.", "Yes, they're our.", "Yes, they're ours books."]
+    ];
+  }
+
   function task(id, topic, correct, distractor, explanation, subtype) {
     return { id: id, topic: topic, correct: correct, distractor: distractor, explanation: explanation, subtype: subtype || "verb-form" };
   }
@@ -504,6 +548,38 @@
         task("ca-question-" + i, "comparative-adjectives", "Which " + noun + " is " + comparative + "?", "Which " + noun + " is more " + comparative + "?", "Do not make a double comparative. Use " + comparative + " without more.", "question"),
         task("ca-spelling-" + i, "comparative-adjectives", leadingSubject + " seems " + comparative + " than " + subjectB + ".", leadingSubject + " seems " + misspelling + " than " + subjectB + ".", spellingRule, "verb-form"),
         task("ca-than-" + i, "comparative-adjectives", "In this comparison, " + subjectA + " is " + comparative + " than " + subjectB + ".", "In this comparison, " + subjectA + " is " + comparative + " then " + subjectB + ".", "Use than, not then, after a comparative adjective.", "word-order")
+      );
+    });
+    possessionScenes().forEach(function (scene, i) {
+      var owner = scene[0];
+      var ownerForm = scene[1];
+      var wrongOwnerForm = scene[2];
+      var object = scene[3];
+      var adjective = scene[4];
+      var pronoun = scene[5];
+      var plural = scene[6];
+      var question = (plural ? "Are those " : "Is that ") + ownerForm + " " + object + "? ";
+      var answer = plural ? "Yes, they're " : "Yes, it's ";
+      var wrongPronoun = pronoun === "his" ? "him" : adjective;
+      var wrongAdjective = adjective === "his" ? "him" : pronoun;
+      var sentenceOwner = owner.charAt(0).toUpperCase() + owner.slice(1);
+      var sentenceOwnerForm = ownerForm.charAt(0).toUpperCase() + ownerForm.slice(1);
+      var be = plural ? "are" : "is";
+      var likes = adjective === "their" ? " like " : " likes ";
+      var otherPronoun = ["mine", "yours", "ours"][i % 3];
+      var wrongOtherPronoun = ["my", "your", "our"][i % 3];
+      tasks["possessive-forms"].push(
+        task("po-answer-" + i, "possessive-forms", question + answer + pronoun + ".", question + answer + wrongPronoun + ".", "Use " + pronoun + " without a following noun.", "question"),
+        task("po-noun-" + i, "possessive-forms", question + answer + adjective + " " + object + ".", question + answer + wrongAdjective + " " + object + ".", "Use " + adjective + " before the noun " + object + ".", "question"),
+        task("po-owner-" + i, "possessive-forms", "Whose " + object + (plural ? " are those? They're " : " is that? It's ") + ownerForm + " " + object + ".", "Whose " + object + (plural ? " are those? They're " : " is that? It's ") + wrongOwnerForm + " " + object + ".", "Show ownership with " + ownerForm + " before the noun.", "question"),
+        task("po-adjective-" + i, "possessive-forms", sentenceOwner + likes + adjective + " " + object + ".", sentenceOwner + likes + wrongAdjective + " " + object + ".", "Use " + adjective + " before the noun " + object + "."),
+        task("po-independent-" + i, "possessive-forms", sentenceOwnerForm + " " + object + " " + be + " here, but " + otherPronoun + " " + be + " at home.", sentenceOwnerForm + " " + object + " " + be + " here, but " + wrongOtherPronoun + " " + be + " at home.", "Use " + otherPronoun + " without repeating the noun; " + wrongOtherPronoun + " needs a noun after it.")
+      );
+    });
+    speakerPossessionScenes().forEach(function (scene, i) {
+      tasks["possessive-forms"].push(
+        task("po-speaker-short-" + i, "possessive-forms", scene[0] + " " + scene[1], scene[0] + " " + scene[3], "Use a possessive pronoun without a noun.", "question"),
+        task("po-speaker-full-" + i, "possessive-forms", scene[0] + " " + scene[2], scene[0] + " " + scene[4], "Use a possessive adjective before the noun.", "question")
       );
     });
     return tasks;
@@ -867,6 +943,9 @@
     if (currentGame) setPaused(true);
     var active = topicKey || (currentGame && currentGame.question ? currentGame.question.topic : selectedTopics[0]) || "present-simple";
     showModal('<h2>Grammar Guide</h2><p>Quick rules and examples for every topic in the game.</p>' +
+      '<label class="guide-topic-picker">Topic <select id="guide-topic-picker">' + Object.keys(TOPICS).map(function (key) {
+        return '<option value="' + key + '"' + (key === active ? ' selected' : '') + '>' + TOPICS[key].name + '</option>';
+      }).join("") + '</select></label>' +
       '<div class="guide-tabs" role="tablist">' + Object.keys(TOPICS).map(function (key) {
         return '<button class="guide-tab" role="tab" data-guide-topic="' + key + '" aria-selected="' + (key === active) + '">' + TOPICS[key].name + '</button>';
       }).join("") + '</div><div id="guide-content"></div>', true, function () {
@@ -874,13 +953,22 @@
         else if (wasPlaying && currentGame) setPaused(false);
       });
     renderGuideContent(active);
+    document.getElementById("guide-topic-picker").addEventListener("change", function (event) {
+      setActiveGuideTopic(event.target.value);
+    });
     modalRoot.querySelectorAll("[data-guide-topic]").forEach(function (tab) {
       tab.addEventListener("click", function () {
-        modalRoot.querySelectorAll("[data-guide-topic]").forEach(function (item) { item.setAttribute("aria-selected", "false"); });
-        tab.setAttribute("aria-selected", "true");
-        renderGuideContent(tab.dataset.guideTopic);
+        setActiveGuideTopic(tab.dataset.guideTopic);
       });
     });
+  }
+
+  function setActiveGuideTopic(key) {
+    modalRoot.querySelectorAll("[data-guide-topic]").forEach(function (tab) {
+      tab.setAttribute("aria-selected", String(tab.dataset.guideTopic === key));
+    });
+    document.getElementById("guide-topic-picker").value = key;
+    renderGuideContent(key);
   }
 
   function renderGuideContent(key) {
@@ -891,6 +979,7 @@
       '<div class="formula">' + topic.formula + '</div><ul class="example-list">' +
       topic.examples.map(function (example) { return '<li>' + example + '</li>'; }).join("") +
       '</ul>' + (topic.verbNote ? '<p class="verb-note"><strong>Regular and irregular verbs:</strong> ' + topic.verbNote + '</p>' : '') +
+      (topic.forms ? '<p class="verb-note"><strong>Possessive forms:</strong> ' + topic.forms + '</p>' : '') +
       '<p><strong>Common mistake:</strong> ' + topic.mistake + '</p></section>';
   }
 

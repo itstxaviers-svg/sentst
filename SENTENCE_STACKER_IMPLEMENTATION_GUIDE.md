@@ -28,6 +28,7 @@ All visible game content must be in English, including menus, instructions, sent
   - Present Perfect Simple
   - This, These & Prepositions
   - Comparative Adjectives: one-syllable and short two-syllable adjectives ending in `-y`
+  - Possessives & Apostrophes: possessive adjectives, possessive pronouns, and owners marked with an apostrophe
 - Each grammar topic has its own expandable task library.
 - Recent tasks must not repeat for the same player.
 - Levels 1–2 share one tower visual theme, Levels 3–4 share a second theme, and Levels 5–6 share a third theme.
@@ -93,7 +94,7 @@ Do not shorten the tractor interval by level unless later playtesting shows that
 
 ### Initial selection
 
-Before starting Level 1, show seven selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
+Before starting Level 1, show eight selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
 
 Each card should contain:
 
@@ -127,6 +128,8 @@ When multiple topics are selected:
 ## 7. Grammar Reference Library
 
 The game must include an accessible **Grammar Guide** from the main menu, pause menu, grammar selection screen, and results screen. Opening the guide during a level should pause all gameplay timers, including the tractor timer.
+
+On narrow screens, use a compact topic picker so all eight rules remain accessible without crowding the guide or adding page scrolling.
 
 Each topic page must contain:
 
@@ -222,6 +225,18 @@ Reference formulas:
 
 Distractors must test only the selected comparative rule: a missing or incorrect `-er/-ier` ending, unnecessary `more`, a double comparative such as `more taller`, or `then` in place of `than`.
 
+### Possessives & Apostrophes
+
+Cover possessive adjectives before nouns (`my, your, his, her, our, their`), possessive pronouns used alone (`mine, yours, his, hers, ours, theirs`), and owners marked with an apostrophe. Use short ownership questions and answers like **Is that Grandpa's tractor? Yes, it's his.** Include singular owners (`Grandpa's`), regular plurals ending in `s` (`pirates'`), irregular plurals (`children's`), and a shared possession (`Anna and Leo's model`). The correct and incorrect choices must differ only in this possession grammar. Do not rely on unstated facts to decide who owns an object or a person's gender.
+
+Reference formulas:
+
+- Possessive adjective + noun: `her shoes`, `our car`.
+- Possessive pronoun without a noun: `hers`, `ours`.
+- Singular or irregular plural owner + `'s`: `Grandpa's tractor`, `children's toys`.
+- Regular plural owner ending in `s` + `'`: `pirates' treasure`.
+- Two people sharing one item: `Anna and Leo's model`.
+
 ## 8. Exercise Library
 
 ### Content requirements
@@ -259,7 +274,8 @@ type GrammarTopic =
   | "present-continuous"
   | "present-perfect-simple"
   | "objects-and-prepositions"
-  | "comparative-adjectives";
+  | "comparative-adjectives"
+  | "possessive-forms";
 
 interface SentenceTask {
   id: string;
@@ -774,7 +790,7 @@ interface SaveDataV1 {
 ### Phase 2 — Content and progression
 
 - Add all fourteen level configurations.
-- Add multi-topic selection and all seven grammar libraries.
+- Add multi-topic selection and all eight grammar libraries.
 - Add save data, results, retry, and between-level selection.
 
 ### Phase 3 — Collection and reference
@@ -800,7 +816,7 @@ The first production release is complete when:
 - the tractor removes the bottom block every 10 active gameplay seconds without waiting for the player;
 - keyboard, mouse, and touch controls are usable;
 - one or several grammar topics can be selected initially and between levels;
-- all seven Grammar Guide sections are complete;
+- all eight Grammar Guide sections are complete;
 - each topic has at least 100 validated and teacher-reviewed tasks;
 - tasks do not repeat within a level and recent cross-session repetition is minimised;
 - each newly completed level unlocks one unique Wonder, Level 7 offers the second chapter, and Level 14 completes the collection;

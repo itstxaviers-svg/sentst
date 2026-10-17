@@ -330,7 +330,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
 
 .topic-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(115px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   flex: 1;
   min-height: 0;
@@ -650,6 +650,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
 .guide-tabs { display: flex; flex-wrap: wrap; gap: 8px; overflow: visible; padding: 5px 4px 12px; }
 .guide-tab { flex: 0 0 auto; padding: 9px 12px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; font-size: .8rem; font-weight: 900; cursor: pointer; }
 .guide-tab[aria-selected="true"] { color: #fff; background: var(--teal-dark); }
+.guide-topic-picker { display: none; }
 .guide-content { padding: 18px; background: #f2ead8; border: 2px solid #d8c9a8; border-radius: 16px; }
 .guide-content h3 { margin: 0 0 6px; font: 800 2rem "Barlow Condensed"; text-transform: uppercase; }
 .formula { padding: 12px; background: var(--ink); color: #fff; border-radius: 10px; font-family: ui-monospace, monospace; font-size: .9rem; }
@@ -991,8 +992,9 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   .modal > p { margin: 7px 0; font-size: .78rem; line-height: 1.35; }
   .modal-actions { gap: 7px; margin-top: 12px; }
   .modal-actions .btn { min-height: 40px; padding: 7px 10px; font-size: .72rem; }
-  .guide-tabs { gap: 5px; padding-bottom: 7px; }
-  .guide-tab { padding: 6px 8px; font-size: .65rem; }
+  .guide-tabs { display: none; }
+  .guide-topic-picker { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: .75rem; font-weight: 900; }
+  .guide-topic-picker select { flex: 1; min-width: 0; height: 40px; padding: 6px 8px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 10px; font-weight: 800; }
   .guide-content { padding: 10px; font-size: .74rem; }
   .guide-content h3 { font-size: 1.45rem; }
   .example-list { margin-top: 6px; }
