@@ -330,7 +330,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
 
 .topic-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   flex: 1;
   min-height: 0;
@@ -339,7 +339,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
 .topic-card {
   position: relative;
   min-height: 0;
-  padding: 18px;
+  padding: 16px;
   text-align: left;
   color: var(--ink);
   background: #fff;
@@ -356,9 +356,10 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   background: linear-gradient(145deg, var(--teal), var(--teal-dark));
   box-shadow: 0 7px 0 var(--ink), 0 14px 30px rgba(7,115,112,.28);
 }
-.topic-card .topic-number { display: block; margin-bottom: 28px; font: 800 .74rem/1 "Nunito"; letter-spacing: .13em; opacity: .7; }
+.topic-card .topic-number { display: block; margin-bottom: 14px; font: 800 .74rem/1 "Nunito"; letter-spacing: .13em; opacity: .7; }
 .topic-card strong { display: block; font: 800 1.55rem/1 "Barlow Condensed"; text-transform: uppercase; }
-.topic-card small { display: block; margin-top: 10px; line-height: 1.35; opacity: .78; }
+.topic-mobile-name { display: none; }
+.topic-card small { display: block; margin-top: 8px; line-height: 1.25; opacity: .78; }
 .topic-card .check {
   position: absolute;
   top: 14px;
@@ -917,12 +918,17 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
 @media (max-width: 980px) {
   .menu-wrap { grid-template-columns: 1fr 380px; gap: 20px; }
   .logo { font-size: clamp(4.3rem, 10vw, 7rem); }
-  .topic-grid { grid-template-columns: repeat(4, 1fr); }
+  .topic-grid { grid-template-columns: repeat(3, 1fr); }
   .game-hud { grid-template-columns: repeat(4, 1fr) auto; }
   .game-hud .brand-mini { display: none; }
   .hud-pill.score-pill { display: none; }
   .sentence-block { width: 42vw; }
   .wonder-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-height: 850px) {
+  .topic-card small { display: none; }
+  .topic-card .topic-number { margin-bottom: 8px; }
 }
 
 @media (max-width: 720px) {
@@ -964,7 +970,9 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   .topic-card { min-height: 0; padding: 10px; }
   .topic-card .topic-number { margin-bottom: 6px; font-size: .62rem; }
   .topic-card strong { font-size: 1.12rem; }
-  .topic-card small { margin-top: 4px; font-size: .68rem; }
+  .topic-full-name { display: none; }
+  .topic-mobile-name { display: block; }
+  .topic-card small { display: none; }
   .section-heading { display: block; }
   .section-heading > div:last-child { display: none; }
   .section-heading h1, .section-heading h2 { font-size: 2.2rem; }
@@ -1050,6 +1058,12 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
   .wonders-wrap { height: calc(100svh - 52px); }
   .wonders-title h1 { font-size: 2rem; }
   .gallery-controls { margin-top: 5px; }
+}
+
+@media (max-width: 720px) and (max-height: 680px) {
+  .topic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .topic-card { padding: 7px; }
+  .topic-card strong { font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

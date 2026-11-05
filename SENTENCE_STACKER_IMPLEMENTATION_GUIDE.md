@@ -29,6 +29,7 @@ All visible game content must be in English, including menus, instructions, sent
   - This, These & Prepositions
   - Comparative Adjectives: one-syllable and short two-syllable adjectives ending in `-y`
   - Possessives & Apostrophes: possessive adjectives, possessive pronouns, and owners marked with an apostrophe
+  - Superlative Adjectives: one-syllable and short two-syllable adjectives ending in `-y`
 - Each grammar topic has its own expandable task library.
 - Recent tasks must not repeat for the same player.
 - Levels 1–2 share one tower visual theme, Levels 3–4 share a second theme, and Levels 5–6 share a third theme.
@@ -94,7 +95,7 @@ Do not shorten the tractor interval by level unless later playtesting shows that
 
 ### Initial selection
 
-Before starting Level 1, show eight selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
+Before starting Level 1, show nine selectable grammar cards. The player may activate one or several topics. At least one topic must be active before the **Start Game** button becomes available.
 
 Each card should contain:
 
@@ -129,7 +130,7 @@ When multiple topics are selected:
 
 The game must include an accessible **Grammar Guide** from the main menu, pause menu, grammar selection screen, and results screen. Opening the guide during a level should pause all gameplay timers, including the tractor timer.
 
-On narrow screens, use a compact topic picker so all eight rules remain accessible without crowding the guide or adding page scrolling.
+On narrow screens, use a compact topic picker so all nine rules remain accessible without crowding the guide or adding page scrolling.
 
 Each topic page must contain:
 
@@ -237,6 +238,18 @@ Reference formulas:
 - Regular plural owner ending in `s` + `'`: `pirates' treasure`.
 - Two people sharing one item: `Anna and Leo's model`.
 
+### Superlative Adjectives
+
+Cover one-syllable adjectives and short two-syllable adjectives ending in `-y`. Use the superlative to identify one item from a group. All article-error tasks must place the superlative before a noun so that the missing `the` is unambiguously wrong.
+
+Reference formulas:
+
+- One-syllable adjective: `the + adjective-est + noun` (`the tallest tower`).
+- Consonant-vowel-consonant ending: double the final consonant (`the biggest room`).
+- Short adjective ending in `-y`: change `-y` to `-iest` (`the happiest child`).
+
+Distractors may omit or misplace `the`, misspell the superlative ending, or incorrectly combine `most` with an `-est/-iest` form. Keep every error inside this topic when it is the only grammar selected.
+
 ## 8. Exercise Library
 
 ### Content requirements
@@ -275,7 +288,8 @@ type GrammarTopic =
   | "present-perfect-simple"
   | "objects-and-prepositions"
   | "comparative-adjectives"
-  | "possessive-forms";
+  | "possessive-forms"
+  | "superlative-adjectives";
 
 interface SentenceTask {
   id: string;
@@ -790,7 +804,7 @@ interface SaveDataV1 {
 ### Phase 2 — Content and progression
 
 - Add all fourteen level configurations.
-- Add multi-topic selection and all eight grammar libraries.
+- Add multi-topic selection and all nine grammar libraries.
 - Add save data, results, retry, and between-level selection.
 
 ### Phase 3 — Collection and reference
@@ -816,7 +830,7 @@ The first production release is complete when:
 - the tractor removes the bottom block every 10 active gameplay seconds without waiting for the player;
 - keyboard, mouse, and touch controls are usable;
 - one or several grammar topics can be selected initially and between levels;
-- all eight Grammar Guide sections are complete;
+- all nine Grammar Guide sections are complete;
 - each topic has at least 100 validated and teacher-reviewed tasks;
 - tasks do not repeat within a level and recent cross-session repetition is minimised;
 - each newly completed level unlocks one unique Wonder, Level 7 offers the second chapter, and Level 14 completes the collection;

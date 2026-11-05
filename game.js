@@ -42,6 +42,7 @@
     },
     "present-perfect-simple": {
       name: "Present Perfect Simple",
+      mobileName: "Present Perfect",
       short: "Experience and present results",
       formula: "Subject + have/has + past participle",
       use: "Use it for life experience, recent results, unfinished time, and actions connected to now.",
@@ -50,6 +51,7 @@
     },
     "objects-and-prepositions": {
       name: "This, These & Prepositions",
+      mobileName: "This / These / Places",
       short: "Objects, number, and position",
       formula: "What's this? It's … / What are these? They are … / in, on, under, next to",
       use: "Use this for one object and these for more than one. Use in, on, under, and next to to describe an object's position.",
@@ -58,6 +60,7 @@
     },
     "comparative-adjectives": {
       name: "Comparative Adjectives",
+      mobileName: "Comparatives",
       short: "One syllable and short -y adjectives",
       formula: "adjective + -er + than / -y → -ier + than",
       use: "Use these comparative forms to compare two people, places, animals, or things. This topic covers one-syllable adjectives and short two-syllable adjectives ending in -y.",
@@ -66,12 +69,22 @@
     },
     "possessive-forms": {
       name: "Possessives & Apostrophes",
+      mobileName: "Possessives & 's",
       short: "my/mine, her/hers, Grandpa's",
       formula: "my book → mine · her book → hers · Grandpa's book",
       use: "Use my/her/our before a noun, but mine/hers/ours without one. Apostrophes show who owns something.",
       examples: ["Is that Grandpa's tractor? Yes, it's his.", "Are those Vicky's shoes? Yes, they're hers.", "The children's toys are here, but ours are at home."],
       forms: "my/mine · your/yours · his/his · her/hers · our/ours · their/theirs. Singular: Grandpa's. Regular plural: pirates'. Irregular plural: children's. Shared item: Anna and Leo's.",
       mistake: "Use her shoes but the shoes are hers. Use pirates', not pirates's, for a regular plural owner."
+    },
+    "superlative-adjectives": {
+      name: "Superlative Adjectives",
+      mobileName: "Superlatives",
+      short: "One syllable and short -y adjectives",
+      formula: "the + adjective-est + noun · -y → -iest · big → biggest",
+      use: "Use the superlative to identify one item in a group. In these examples, put the before the superlative adjective and its noun.",
+      examples: ["This is the tallest tower in the city.", "That is the biggest room in the school.", "She is the happiest child in the class."],
+      mistake: "Do not omit the before a superlative adjective followed by a noun. Add -est to most one-syllable adjectives, double the final consonant when needed (big → biggest), and change final -y to -iest (happy → happiest). Do not combine most with an -est form."
     }
   };
 
@@ -305,9 +318,9 @@
       Object.keys(TOPICS).map(function (key, index) {
         var topic = TOPICS[key];
         var active = selectedTopics.indexOf(key) >= 0;
-        return '<button class="topic-card" data-topic="' + key + '" aria-pressed="' + active + '">' +
+        return '<button class="topic-card" data-topic="' + key + '" aria-label="' + escapeHtml(topic.name) + '" aria-pressed="' + active + '">' +
           '<span class="topic-number">0' + (index + 1) + '</span><span class="check">✓</span>' +
-          '<strong>' + topic.name + '</strong><small>' + topic.short + '</small></button>';
+          '<strong><span class="topic-full-name">' + topic.name + '</span><span class="topic-mobile-name" aria-hidden="true">' + (topic.mobileName || topic.name) + '</span></strong><small>' + topic.short + '</small></button>';
       }).join("") +
       '</div><div class="selection-footer"><span class="helper" id="selection-help">' + selectedTopics.length + ' topic' + (selectedTopics.length === 1 ? "" : "s") + ' selected</span>' +
       '<div class="selection-actions"><button class="btn btn-ghost" data-action="guide">Grammar Guide</button>' +
@@ -422,6 +435,32 @@
       ["heavy", "heavier", "heavyer", "the school bag", "the sports bag", "bag"],
       ["lucky", "luckier", "luckyer", "Maya", "Leo", "player"],
       ["dirty", "dirtier", "dirtyer", "the kitchen floor", "the hall floor", "floor"]
+    ];
+  }
+
+  function superlativeAdjectives() {
+    // adjective, superlative, incorrect form, noun, group
+    return [
+      ["tall", "tallest", "tallerest", "tower", "in the city"],
+      ["small", "smallest", "smallerest", "box", "in the room"],
+      ["fast", "fastest", "fasterest", "train", "at the station"],
+      ["long", "longest", "longerest", "bridge", "in the county"],
+      ["old", "oldest", "olderest", "castle", "in the region"],
+      ["cold", "coldest", "colderest", "day", "of the week"],
+      ["bright", "brightest", "brighterest", "lamp", "in the shop"],
+      ["strong", "strongest", "strongerest", "rope", "in the shop"],
+      ["cheap", "cheapest", "cheaperest", "ticket", "on the website"],
+      ["big", "biggest", "bigest", "room", "in the school"],
+      ["happy", "happiest", "happyest", "child", "in the class"],
+      ["easy", "easiest", "easyest", "exercise", "in the book"],
+      ["busy", "busiest", "busyest", "street", "in the town"],
+      ["funny", "funniest", "funnyest", "story", "in the book"],
+      ["noisy", "noisiest", "noisyest", "classroom", "in the school"],
+      ["tidy", "tidiest", "tidyest", "room", "in the house"],
+      ["pretty", "prettiest", "prettyest", "garden", "in the village"],
+      ["heavy", "heaviest", "heavyest", "bag", "in the shop"],
+      ["lucky", "luckiest", "luckyest", "player", "on the team"],
+      ["dirty", "dirtiest", "dirtyest", "floor", "in the building"]
     ];
   }
 
@@ -580,6 +619,25 @@
       tasks["possessive-forms"].push(
         task("po-speaker-short-" + i, "possessive-forms", scene[0] + " " + scene[1], scene[0] + " " + scene[3], "Use a possessive pronoun without a noun.", "question"),
         task("po-speaker-full-" + i, "possessive-forms", scene[0] + " " + scene[2], scene[0] + " " + scene[4], "Use a possessive adjective before the noun.", "question")
+      );
+    });
+    superlativeAdjectives().forEach(function (item, i) {
+      var base = item[0];
+      var superlative = item[1];
+      var wrongForm = item[2];
+      var noun = item[3];
+      var group = item[4];
+      var phrase = superlative + " " + noun + " " + group;
+      var articleRule = "Use the before " + superlative + " " + noun + ".";
+      var spellingRule = base.endsWith("y")
+        ? "Change final -y to -iest: " + base + " → " + superlative + "."
+        : (base === "big" ? "Double the final consonant: big → biggest." : "Use the -est form " + superlative + ", not " + wrongForm + ".");
+      tasks["superlative-adjectives"].push(
+        task("sa-article-" + i, "superlative-adjectives", "This is the " + phrase + ".", "This is " + phrase + ".", articleRule),
+        task("sa-form-" + i, "superlative-adjectives", "That is the " + phrase + ".", "That is the " + wrongForm + " " + noun + " " + group + ".", spellingRule),
+        task("sa-double-" + i, "superlative-adjectives", "Which is the " + phrase + "?", "Which is the most " + phrase + "?", "Do not put most before an adjective that already ends in -est or -iest.", "question"),
+        task("sa-negative-" + i, "superlative-adjectives", "This is not the " + phrase + ".", "This is not " + phrase + ".", articleRule, "negative"),
+        task("sa-order-" + i, "superlative-adjectives", "I think this is the " + phrase + ".", "I think this is " + superlative + " the " + noun + " " + group + ".", "Put the before the superlative adjective and noun: the " + superlative + " " + noun + ".", "word-order")
       );
     });
     return tasks;
