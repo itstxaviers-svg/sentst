@@ -248,7 +248,7 @@ Reference formulas:
 - Consonant-vowel-consonant ending: double the final consonant (`the biggest room`).
 - Short adjective ending in `-y`: change `-y` to `-iest` (`the happiest child`).
 
-Distractors may omit or misplace `the`, misspell the superlative ending, or incorrectly combine `most` with an `-est/-iest` form. Keep every error inside this topic when it is the only grammar selected.
+Distractors may omit or misplace `the` or use an incorrect `-est/-iest` ending. Do not include `most` as an answer choice in this topic. Keep every error inside this topic when it is the only grammar selected.
 
 ## 8. Exercise Library
 

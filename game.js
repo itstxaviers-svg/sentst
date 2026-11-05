@@ -84,7 +84,7 @@
       formula: "the + adjective-est + noun · -y → -iest · big → biggest",
       use: "Use the superlative to identify one item in a group. In these examples, put the before the superlative adjective and its noun.",
       examples: ["This is the tallest tower in the city.", "That is the biggest room in the school.", "She is the happiest child in the class."],
-      mistake: "Do not omit the before a superlative adjective followed by a noun. Add -est to most one-syllable adjectives, double the final consonant when needed (big → biggest), and change final -y to -iest (happy → happiest). Do not combine most with an -est form."
+      mistake: "Do not omit the before a superlative adjective followed by a noun. Add -est to one-syllable adjectives in this topic, double the final consonant when needed (big → biggest), and change final -y to -iest (happy → happiest)."
     }
   };
 
@@ -635,7 +635,7 @@
       tasks["superlative-adjectives"].push(
         task("sa-article-" + i, "superlative-adjectives", "This is the " + phrase + ".", "This is " + phrase + ".", articleRule),
         task("sa-form-" + i, "superlative-adjectives", "That is the " + phrase + ".", "That is the " + wrongForm + " " + noun + " " + group + ".", spellingRule),
-        task("sa-double-" + i, "superlative-adjectives", "Which is the " + phrase + "?", "Which is the most " + phrase + "?", "Do not put most before an adjective that already ends in -est or -iest.", "question"),
+        task("sa-question-" + i, "superlative-adjectives", "Which is the " + phrase + "?", "Which is " + phrase + "?", articleRule, "question"),
         task("sa-negative-" + i, "superlative-adjectives", "This is not the " + phrase + ".", "This is not " + phrase + ".", articleRule, "negative"),
         task("sa-order-" + i, "superlative-adjectives", "I think this is the " + phrase + ".", "I think this is " + superlative + " the " + noun + " " + group + ".", "Put the before the superlative adjective and noun: the " + superlative + " " + noun + ".", "word-order")
       );
